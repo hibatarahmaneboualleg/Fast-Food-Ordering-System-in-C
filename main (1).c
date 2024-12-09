@@ -35,7 +35,7 @@ b = 0;
 scanf("%d",&y);
 switch(y){
 case 1:
-printf("choose a size :\n 1-V. 250 DA \n 2-L. 350 DA \n 3-XL. 400 DA \n");
+printf("choose a size :\n 1-M. 250 DA \n 2-L. 350 DA \n 3-XL. 400 DA \n");
 scanf("%d",&f);
 if(f == 1){
 p = 250;}
@@ -63,7 +63,7 @@ scanf("%d",&n);
 }
 switch(f){
 case 1:
-printf("you've ordered a %d Pizza size V \n",n);
+printf("you've ordered a %d Pizza size M \n",n);
 break;
 case 2:
 printf("you've ordered a %d Pizza size L \n",n);
@@ -80,7 +80,7 @@ scanf("%d",&e);
 }
 break; 
 case 2:
-printf("choose a size :\n 1-V. 200 DA \n 2-L. 300 DA \n 3-XL. 350 DA \n");
+printf("choose a size :\n 1-M. 200 DA \n 2-L. 300 DA \n 3-XL. 350 DA \n");
 scanf("%d",&i);
 if(i == 1){
 a = 200;}
@@ -108,7 +108,7 @@ scanf("%d",&v);
 }
 switch(i){
 case 1:
-printf("you've ordered a %d Tacos size V \n",v);
+printf("you've ordered a %d Tacos size M \n",v);
 break;
 case 2:
 printf("you've ordered a %d Tacos size L \n",v);
@@ -125,7 +125,7 @@ scanf("%d",&q);
 }
 break;
 case 3:
-printf("choose a size :\n 1-V. 100 DA \n 2-L. 200 DA \n 3-XL. 250 DA \n");
+printf("choose a size :\n 1-M. 100 DA \n 2-L. 200 DA \n 3-XL. 250 DA \n");
 scanf("%d",&k);
 if(k == 1){
 g = 100;}
@@ -153,7 +153,7 @@ scanf("%d",&b);
 }
 switch(k){
 case 1:
-printf("you've ordered a %d Salad size V \n",b);
+printf("you've ordered a %d Salad size M \n",b);
 break;
 case 2:
 printf("you've ordered a %d Salad size L \n",b);
