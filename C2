@@ -1,0 +1,142 @@
+#include<stdio.h>
+#include<string.h>
+
+int main() {
+    int show_menu, food_choice, order_exit, salad_size, pizza_size, tacos_size, students_senior, pizza_ingredients, tacos_ingredients;
+    int pizza_quantity = 0, tacos_quantity = 0, salad_quantity = 0;
+    float pizza_price = 0, tacos_price = 0, salad_price = 0, raw_total = 0, total_with_tax, final_total;
+    char code_promo[5];
+
+    printf("Good morning! How can we help you?\n");
+    printf("Press 1 to show menu\n");
+    scanf("%d", &show_menu);
+
+    if (show_menu == 1) {
+        do {
+            printf("\nType 1 to order\nType 2 to show the bill\n");
+            scanf("%d", &order_exit);
+
+            if (order_exit == 1) {
+                printf("\nMenu:\n1 - Pizza\n2 - Tacos\n3 - Salad\n");
+                scanf("%d", &food_choice);
+
+                switch (food_choice) {
+                case 1:
+                    printf("Choose a size:\n1 - M (250 DA)\n2 - L (350 DA)\n3 - XL (400 DA)\n");
+                    scanf("%d", &pizza_size);
+                    while (pizza_size < 1 || pizza_size > 3) {
+                        printf("Invalid choice. Try again: ");
+                        scanf("%d", &pizza_size);
+                    }
+                    pizza_price = (pizza_size == 1) ? 250 : (pizza_size == 2) ? 350 : 400;
+
+                    printf("How many pizzas do you want to order? ");
+                    scanf("%d", &pizza_quantity);
+                    while (pizza_quantity <= 0) {
+                        printf("Invalid quantity. Try again: ");
+                        scanf("%d", &pizza_quantity);
+                    }
+
+                    printf("Which ingredient do you want?\n1 - Cheese\n2 - Tuna\n3 - Beef\n4 - Chicken\n");
+                    scanf("%d", &pizza_ingredients);
+                    while (pizza_ingredients < 1 || pizza_ingredients > 4) {
+                        printf("Invalid choice. Try again: ");
+                        scanf("%d", &pizza_ingredients);
+                    }
+
+                    printf("You've ordered %d Pizza(s), size %s with ingredient %d.\n", pizza_quantity,
+                           (pizza_size == 1) ? "M" : (pizza_size == 2) ? "L" : "XL", pizza_ingredients);
+                    break;
+
+                case 2: 
+                    printf("Choose a size:\n1 - M (200 DA)\n2 - L (300 DA)\n3 - XL (350 DA)\n");
+                    scanf("%d", &tacos_size);
+                    while (tacos_size < 1 || tacos_size > 3) {
+                        printf("Invalid choice. Try again: ");
+                        scanf("%d", &tacos_size);
+                    }
+                    tacos_price = (tacos_size == 1) ? 200 : (tacos_size == 2) ? 300 : 350;
+
+                    printf("How many tacos do you want to order? ");
+                    scanf("%d", &tacos_quantity);
+                    while (tacos_quantity <= 0) {
+                        printf("Invalid quantity. Try again: ");
+                        scanf("%d", &tacos_quantity);
+                    }
+
+                    printf("Which ingredient do you want?\n1 - Cheese\n2 - Tuna\n3 - Beef\n4 - Chicken\n");
+                    scanf("%d", &tacos_ingredients);
+                    while (tacos_ingredients < 1 || tacos_ingredients > 4) {
+                        printf("Invalid choice. Try again: ");
+                        scanf("%d", &tacos_ingredients);
+                    }
+
+                    printf("You've ordered %d Tacos, size %s with ingredient %d.\n", tacos_quantity,
+                           (tacos_size == 1) ? "M" : (tacos_size == 2) ? "L" : "XL", tacos_ingredients);
+                    break;
+
+                case 3: 
+                    printf("Choose a size:\n1 - M (100 DA)\n2 - L (200 DA)\n3 - XL (250 DA)\n");
+                    scanf("%d", &salad_size);
+                    while (salad_size < 1 || salad_size > 3) {
+                        printf("Invalid choice. Try again: ");
+                        scanf("%d", &salad_size);
+                    }
+                    salad_price = (salad_size == 1) ? 100 : (salad_size == 2) ? 200 : 250;
+printf("How many salads do you want to order? ");
+                    scanf("%d", &salad_quantity);
+                    while (salad_quantity <= 0) {
+                        printf("Invalid quantity. Try again: ");
+                        scanf("%d", &salad_quantity);
+                    }
+
+                    printf("You've ordered %d Salad(s), size %s.\n", salad_quantity,
+                           (salad_size == 1) ? "M" : (salad_size == 2) ? "L" : "XL");
+                    break;
+
+                default:
+                    printf("Sorry, this option is not available.\n");
+                }
+
+                raw_total += (pizza_price * pizza_quantity) + (tacos_price * tacos_quantity) + (salad_price * salad_quantity);
+            }
+        } while (order_exit == 1);
+
+      
+        printf("\nYour total without tax: %.2f DA\n", raw_total);
+        printf("Tax (19%%): %.2f DA\n", raw_total * 0.19);
+        total_with_tax = raw_total * 1.19;
+
+        printf("\nYour total with tax: %.2f DA\n", total_with_tax);
+        printf("\nAre you a student (2), a senior (1), or neither? Enter your choice: ");
+        scanf("%d", &students_senior);
+
+        printf("\nDo you have a discount code? Press 1 to enter it, or any other number to continue: ");
+        scanf("%d", &order_exit);
+        if (order_exit == 1) {
+            printf("Enter your discount code: ");
+            scanf("%s", code_promo);
+            if (strcmp(code_promo, "free") == 0) {
+                printf("Code is valid. You get a 10%% discount.\n");
+                total_with_tax *= 0.9;
+            } else {
+                printf("Invalid code.\n");
+            }
+        }
+
+       
+        if (students_senior == 2) {
+            final_total = total_with_tax * 0.7; 
+        } else if (students_senior == 1) {
+            final_total = total_with_tax * 0.75; 
+        } else {
+            final_total = total_with_tax;
+        }
+
+        printf("\nYour final total is: %.2f DA\n", final_total);
+    } else {
+        printf("Invalid choice. Exiting.\n");
+    }
+
+    return 0;
+}
